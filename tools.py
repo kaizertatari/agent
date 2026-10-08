@@ -1,10 +1,8 @@
-from groq import Groq
-from dotenv import load_dotenv
-
-load_dotenv()
-client = Groq()
-
-request = {"tool" : "multiply", "a" : 48173, "b" : "forty"}
+def run_tool(name, args):
+    if(name == "multiply"):
+        return multiply(args.get('a'),args.get('b'))
+    else:
+        return f"Error: unknown tool '{name}'"
 
 def multiply(a,b):
     if not isinstance(a, (int,float)) :
@@ -13,8 +11,7 @@ def multiply(a,b):
         return f"Error:'b' must be a number , got {b}"
     else:
         return a * b
-
-if request["tool"] == "multiply":
-    print(multiply(request["a"], request["b"]))
-else:
-    print("Unknown tool")
+    
+if __name__ == "__main__":
+    request = {"tool" : "divide", "a" : 48173, "b" : 40}
+    print(run_tool(request["tool"], request))

@@ -1,4 +1,4 @@
-def run_tool(name, args):
+def run_tool(args,name):
     if(name == "multiply"):
         return multiply(args.get('a'),args.get('b'))
     else:
@@ -14,4 +14,4 @@ def multiply(a,b):
     
 if __name__ == "__main__":
     request = {"tool" : "divide", "a" : 48173, "b" : 40}
-    print(run_tool(request["tool"], request))
+    print(run_tool(request, request["tool"]))
